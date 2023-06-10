@@ -27,8 +27,7 @@ import {CredentialResponse} from "interfaces/google";
 import {parseJwt} from "utils/parse-jwt";
 
 import {
-    Login,
-    Home, AllProperties
+    Login, Home, AllProperties, PropertyDetails, CreateProperty, EditProperty, Agents, AgentProfile, MyProfile
 } from "pages";
 
 const axiosInstance = axios.create();
@@ -130,26 +129,30 @@ function App() {
                         {
                             name: "properties",
                             list: () => <AllProperties />,
+                            show: PropertyDetails,
+                            create: CreateProperty,
+                            edit: EditProperty,
                             icon: <VillaOutlined/>,
                         },
                         {
                             name: "agents",
-                            list: () => <span>agents</span>,
+                            list: Agents,
+                            show: AgentProfile,
                             icon: <PeopleAltOutlined/>,
                         },
                         {
                             name: "reviews",
-                            list: () => <span>reviews</span>,
+                            list: Home,
                             icon: <StarOutlineRounded/>,
                         },
                         {
                             name: "messages",
-                            list: () => <span>messages</span>,
+                            list: Home,
                             icon: <ChatBubbleOutline/>,
                         },
                         {
                             name: "my-profile",
-                            list: () => <span>my-profile</span>,
+                            list: MyProfile,
                             options: {label: 'My Profile'},
                             icon: <AccountCircleOutlined/>,
                         },

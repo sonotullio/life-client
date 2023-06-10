@@ -5,7 +5,7 @@ import React, {
     useState,
 } from "react";
 import { ThemeProvider } from "@mui/material/styles";
-import { DarkTheme, LightTheme } from "@refinedev/mui";
+import { DarkTheme, LightTheme } from "../themes";
 
 type ColorModeContextType = {
     mode: string;

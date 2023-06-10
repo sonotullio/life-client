@@ -1,5 +1,5 @@
 import {Box, Stack, Typography} from "@mui/material";
-import {ArrowCircleUpRounded} from "@mui/icons-material";
+import {ArrowCircleUpRounded, ArrowUpwardRounded} from "@mui/icons-material";
 import ReactApexChart from "react-apexcharts";
 import {TotalRevenueOptions, TotalRevenueSeries} from "./chart.config";
 
@@ -8,23 +8,23 @@ export const TotalRevenue = () => {
         <Box
             p={4}
             flex={1}
-            bgcolor="#fcfcfc"
             id="chart"
             display="flex"
             flexDirection="column"
             borderRadius={2}
+            bgcolor="background.paper"
         >
-            <Typography fontSize={18} fontWeight={600} color="#11142d">TotalRevenue</Typography>
+            <Typography fontSize={18}>TotalRevenue</Typography>
 
             <Stack my={2} direction="row" gap={4} flexWrap="wrap">
-                <Typography fontSize={28} fontWeight={700} color="#11142d">$236,535</Typography>
-                <Stack direction="row" alignItems="center" gap={1}>
-                    <ArrowCircleUpRounded sx={{fontSize: 25, color: "#475be8"}}/>
+                <Typography fontSize={28}>$236,535</Typography>
+                <Stack direction="row" alignItems="center" gap={2}>
+                    <ArrowUpwardRounded sx={{fontSize: 18, bgcolor: "primary.main", borderRadius: '50%', color: 'primary.contrastText'}}/>
                     <Stack>
-                        <Typography fontSize={15} color="#475be8">
+                        <Typography fontSize={15} color="primary">
                             0.8%
                         </Typography>
-                        <Typography fontSize={12} color="#888191">
+                        <Typography fontSize={12} color="text.secondary">
                             Than Last Month
                         </Typography>
                     </Stack>
