@@ -22,7 +22,6 @@ export const Header: React.FC = () => {
             color="default"
             position="sticky"
             elevation={0}
-            sx={{background: "#fcfcf"}}
         >
             <Toolbar>
                 <IconButton
@@ -43,7 +42,7 @@ export const Header: React.FC = () => {
                     {showUserInfo && (
                         <Stack direction="row" gap="16px" alignItems="center">
                             {user.avatar && (
-                                <Avatar src={user?.avatar} alt={user?.name}/>
+                                <Avatar src={user?.avatar} alt={user?.name} sx={{ bgcolor: "primary.main" }} />
                             )}
                             {user.name && (
                                 <Typography variant="subtitle2">

@@ -49,3 +49,5 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 ## License
 
 MIT
+
+#### A React function component name need to start with a capital letter!

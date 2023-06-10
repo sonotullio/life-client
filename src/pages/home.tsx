@@ -13,7 +13,7 @@ import {
 export const Home: React.FC = () => {
     return (
         <Box>
-            <Typography fontSize={25} fontWeight={700} color="#111">
+            <Typography fontSize={25} fontWeight={700}>
                 Dashboard
             </Typography>
             <Box
@@ -48,7 +48,7 @@ export const Home: React.FC = () => {
                 />
             </Box>
 
-            <Stack direction={{ xs: "column", lg: "row" }} mt="25px" width="100%" gap={2}>
+            <Stack direction={{ xs: "column", lg: "row" }} mt="25px" width="100%" gap={4}>
                 <TotalRevenue />
                 <PropertyReferrals />
             </Stack>
