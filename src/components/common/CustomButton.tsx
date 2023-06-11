@@ -2,7 +2,7 @@
 import {CustomButtonProps} from "../../interfaces/common";
 import {Button} from "@mui/material";
 
-export const CustomButton = ({type, title, fullWidth, icon, handleClick}: CustomButtonProps) => {
+export const CustomButton = ({type, title, fullWidth, icon, handleClick, disabled}: CustomButtonProps) => {
     return (
         <Button
             type={type === "submit" ? "submit" : "button"}
@@ -23,6 +23,7 @@ export const CustomButton = ({type, title, fullWidth, icon, handleClick}: Custom
                 },
             }}
             onClick={handleClick}
+            disabled={disabled}
         >
             {icon}
             {title}
