@@ -2,7 +2,7 @@
 import {CustomButtonProps} from "../../interfaces/common";
 import {Button} from "@mui/material";
 
-export const CustomButton = ({type, title, fullWidth, icon, handleClick, disabled}: CustomButtonProps) => {
+export const CustomButton = ({type, title, fullWidth, icon, handleClick, disabled, color}: CustomButtonProps) => {
     return (
         <Button
             type={type === "submit" ? "submit" : "button"}
@@ -11,7 +11,7 @@ export const CustomButton = ({type, title, fullWidth, icon, handleClick, disable
                 padding: "10px 15px",
                 width: fullWidth ? "100%" : "fit-content",
                 minWidth: 130,
-                backgroundColor: "primary.main",
+                backgroundColor: color ? color : "primary.main",
                 color: "primary.contrastText",
                 fontSize: 16,
                 fontWeight: 600,

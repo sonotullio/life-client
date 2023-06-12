@@ -4,20 +4,37 @@ import { Typography, Box, Stack } from "@mui/material";
 
 import {
     PieChart,
-    PropertyCard,
     PropertyReferrals,
     TotalRevenue,
-    TopAgent,
 } from "../components";
+import PropertiesCard from "../components/common/Properties";
+import React from "react";
 
 export const Home: React.FC = () => {
+    const { data, isLoading, isError } = useList({
+        resource: "properties",
+        config: {
+            pagination: {
+                pageSize: 4,
+            },
+        },
+    });
+
+    const latestProperties = data?.data ?? [];
+
+    if (isLoading) return <Typography>Loading...</Typography>;
+    if (isError) return <Typography>Something went wrong!</Typography>;
+
     return (
-        <Box>
+        <Box sx={{
+            display: 'flex',
+            flexDirection: 'column',
+            gap: 4,
+        }}>
             <Typography fontSize={25} fontWeight={700}>
                 Dashboard
             </Typography>
             <Box
-                mt="20px"
                 display="flex"
                 flexWrap="wrap"
                 gap={4}
@@ -48,10 +65,14 @@ export const Home: React.FC = () => {
                 />
             </Box>
 
-            <Stack direction={{ xs: "column", lg: "row" }} mt="25px" width="100%" gap={4}>
+            <Stack direction={{ xs: "column", lg: "row" }} width="100%" gap={4}>
                 <TotalRevenue />
                 <PropertyReferrals />
             </Stack>
+
+            <Box>
+                <PropertiesCard properties={latestProperties} />
+            </Box>
         </Box>
     );
 }
