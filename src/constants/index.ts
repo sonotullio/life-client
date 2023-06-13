@@ -25,3 +25,34 @@ export const propertyReferralsInfo = [
         color: '#F45252',
     },
 ];
+
+export const Palette = [
+    "#6C5DD3",
+    "#7FBA7A",
+    "#FFCE73",
+    "#FFA2C0",
+    "#F45252",
+];
+
+export const KPIS = [
+    {
+        title: "Properties for Sale",
+        total: 684,
+        series: [75, 25],
+    },
+    {
+        title: "Properties for Rent",
+        total: 684,
+        series: [75, 25],
+    },
+    {
+        title: "Total Customers",
+        total: 684,
+        series: [75, 25],
+    },
+    {
+        title: "Properties for Cities",
+        total: 684,
+        series: [75, 25],
+    },
+];

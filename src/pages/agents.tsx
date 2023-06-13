@@ -45,7 +45,7 @@ export const Agents: React.FC = () => {
             </Stack>
             <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, mb: 2}}>
                 {allAgents.map((agent: any) => (
-                    <AgentCard key={agent._id} id={agent._id} name={agent.name} email={agent.email} avatar={agent.avatar} noOfProperties={agent.allProperties.length} />
+                    <AgentCard key={agent._id} id={agent._id} name={agent.name} email={agent.email} avatar={agent.photo ? agent.photo : agent.avatar} noOfProperties={agent.allProperties.length} />
                 ))}
             </Box>
 

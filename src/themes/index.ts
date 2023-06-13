@@ -39,8 +39,8 @@ const lightPalette: PaletteOptions = {
     divider: "rgba(0,0,0,0)",
     text: {
         primary: "#11142d",
-        secondary: "#9f9f9f",
-        disabled: "#c1c1c1",
+        secondary: "#d1d1d1",
+        disabled: "#F3F3F3",
     },
 };
 
@@ -71,6 +71,29 @@ const LightTheme = createTheme({
                 },
             },
         },
+        MuiChip: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#F7F7F7",
+                    borderRadius: 10,
+                }
+            }
+        },
+        MuiOutlinedInput: {
+            styleOverrides: {
+                root: {
+                    backgroundColor: "#F7F7F7",
+                    borderRadius: 10,
+                    '& fieldset': {
+                        borderColor: 'transparent',
+                    },
+                    '&:hover fieldset': {
+                        border: 'none',
+                    },
+                },
+            }
+        },
+
     },
 });
 
@@ -107,8 +130,8 @@ const darkPalette: PaletteOptions = {
     divider: "rgba(0,0,0,0)",
     text: {
         primary: "#fcfcfc",
-        secondary: "rgba(255,255,255,0.7)",
-        disabled: "#d1d1d1",
+        secondary: "#d1d1d1",
+        disabled: "#F3F3F3",
     },
 };
 
@@ -136,6 +159,13 @@ const DarkTheme = createTheme({
                     lineHeight: "2rem",
                 },
             },
+        },
+        MuiChip: {
+            styleOverrides: {
+                root: {
+                    borderRadius: 10,
+                }
+            }
         },
     },
 });

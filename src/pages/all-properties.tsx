@@ -1,12 +1,25 @@
-import { Add } from '@mui/icons-material';
-import {Box, MenuItem, Select, Stack, TextField, Typography} from '@mui/material';
+import {Add} from '@mui/icons-material';
+import {
+    Box,
+    Card,
+    CardContent,
+    Stack,
+    Typography,
+} from '@mui/material';
 import {useTable} from '@refinedev/core';
 import { useNavigate } from "react-router-dom";
 
 import { PropertyCard, CustomButton } from '../components';
 import {useMemo} from "react";
+import PropertyFilters from "../components/property/property-filters";
+import PropertyPagination from "../components/property/property-pagination";
 
-export const AllProperties: React.FC = () => {
+
+export interface AllPropertiesProps {
+    hideHeader?: boolean;
+}
+
+export const AllProperties = ({hideHeader}: AllPropertiesProps) => {
     const navigate = useNavigate();
     const {
         tableQueryResult: { data, isLoading, isError },
@@ -15,7 +28,9 @@ export const AllProperties: React.FC = () => {
         pageCount,
         sorter, setSorter,
         filters, setFilters,
-    } = useTable();
+    } = useTable({
+        resource: 'properties',
+    });
 
     const allProperties = data?.data ?? [];
 
@@ -37,6 +52,9 @@ export const AllProperties: React.FC = () => {
             propertyType:
                 logicalFilters.find((item) => item.field === "propertyType")
                     ?.value || "",
+            status:
+                logicalFilters.find((item) => item.field === "status")
+                    ?.value || "",
         };
     }, [filters]);
 
@@ -47,11 +65,13 @@ export const AllProperties: React.FC = () => {
         <Box>
 
             {/*header*/}
-            <Box mt={2} sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 3
-            }}>
+            {
+                !hideHeader &&
+                <Box mt={2} sx={{
+                    display: 'flex',
+                    flexWrap: 'wrap',
+                    gap: 3
+                }}>
                     <Stack
                         width="100%"
                         direction="row"
@@ -67,151 +87,63 @@ export const AllProperties: React.FC = () => {
                             handleClick={() => navigate("/properties/create")}
                             icon={<Add />} />
                     </Stack>
-
-            </Box>
+                </Box>
+            }
 
             {/*body*/}
-            <Box sx={{
-                display: 'flex',
-                flexWrap: 'wrap',
-                gap: 3,
-                padding: 2,
-                borderRadius: 3,
-                backgroundColor: 'background.paper'
-            }}>
-                <Box
-                    display="flex"
-                    width="84%"
-                    justifyContent="space-between"
-                    flexWrap="wrap"
-                >
-                    <Box
-                        display="flex"
-                        gap={2}
-                        flexWrap="wrap"
-                        mb={{ xs: "20px", sm: 0 }}
-                    >
-                        <CustomButton
-                            title={`Sort price ${
-                                currentPrice === "asc" ? "↑" : "↓"
-                            }`}
-                            handleClick={() => toggleSort("price")}
-                        />
-                        <TextField
-                            variant="outlined"
-                            color="info"
-                            placeholder="Search by title"
-                            value={currentFilterValues.title}
-                            onChange={(e) => {
-                                setFilters([
-                                    {
-                                        field: "title",
-                                        operator: "contains",
-                                        value: e.currentTarget.value
-                                            ? e.currentTarget.value
-                                            : undefined,
-                                    },
-                                ]);
-                            }}
-                        />
-                        <Select
-                            variant="outlined"
-                            color="info"
-                            displayEmpty
-                            required
-                            inputProps={{ "aria-label": "Without label" }}
-                            defaultValue=""
-                            value={currentFilterValues.propertyType}
-                            onChange={(e) => {
-                                setFilters(
-                                    [
-                                        {
-                                            field: "propertyType",
-                                            operator: "eq",
-                                            value: e.target.value,
-                                        },
-                                    ],
-                                    "replace",
-                                );
-                            }}
-                        >
-                            <MenuItem value="">All</MenuItem>
-                            {[
-                                "Apartment",
-                                "Villa",
-                                "Farmhouse",
-                                "Condos",
-                                "Townhouse",
-                                "Duplex",
-                                "Studio",
-                                "Chalet",
-                            ].map((type) => (
-                                <MenuItem
-                                    key={type}
-                                    value={type.toLowerCase()}
-                                >
-                                    {type}
-                                </MenuItem>
-                            ))}
-                        </Select>
-                    </Box>
-                </Box>
 
-                {allProperties.map((property: any) => (
-                    <PropertyCard key={property._id}
-                                  id={property._id}
-                                  title={property.title}
-                                  price={property.price}
-                                  location={property.location}
-                                  photo={property.photo}
-                    />
-                ))}
-
-                {/*footer*/}
-                {allProperties.length > 0 && (
-                    <Box display="flex" justifyContent="flex-end" width="100%" gap={2} flexWrap="wrap">
-                        <CustomButton
-                            title="Previous"
-                            handleClick={() => setCurrent((prev) => prev - 1)}
-                            disabled={!(current > 1)}
-                        />
-                        <Box
-                            display={{ xs: "hidden", sm: "flex" }}
-                            alignItems="center"
-                            gap="5px"
-                        >
-                            Page{" "}
-                            <strong>
-                                {current} of {pageCount}
-                            </strong>
-                        </Box>
-                        <CustomButton
-                            title="Next"
-                            handleClick={() => setCurrent((prev) => prev + 1)}
-                            disabled={current === pageCount}
-                        />
-                        <Select
-                            variant="outlined"
-                            color="info"
-                            displayEmpty
-                            required
-                            inputProps={{ "aria-label": "Without label" }}
-                            defaultValue={10}
-                            onChange={(e) =>
-                                setPageSize(
-                                    e.target.value ? Number(e.target.value) : 10,
-                                )
-                            }
-                        >
-                            {[10, 20, 30, 40, 50].map((size) => (
-                                <MenuItem key={size} value={size}>
-                                    Show {size}
-                                </MenuItem>
-                            ))}
-                        </Select>
+            <Card>
+                <CardContent sx={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    gap: 2
+                }}>
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: 'column',
+                    }}>
+                        <PropertyFilters
+                            currentFilterValues={currentFilterValues}
+                            currentPrice={currentPrice}
+                            setFilters={setFilters}
+                            toggleSort={toggleSort} />
                     </Box>
-                )}
-            </Box>
+
+                    <Box sx={{
+                        display: 'flex',
+                        flexDirection: { xs: 'column', lg: 'row' },
+                        gap: 2,
+                    }}>
+                        {allProperties.map((property: any) => (
+                            <Box sx={{
+                                display: 'flex',
+                                flexDirection: 'row',
+                                alignItems: 'flex-start',
+                                width: '100%',
+                                gap: 4
+                            }}>
+                                <PropertyCard key={property._id}
+                                              id={property._id}
+                                              title={property.title}
+                                              price={property.price}
+                                              status={property.status}
+                                              location={property.location}
+                                              photo={property.photo}
+                                />
+                            </Box>
+                        ))}
+                    </Box>
+
+                    {allProperties.length > 0 && (
+                        <PropertyPagination
+                            current={current}
+                            setCurrent={setCurrent}
+                            pageCount={pageCount}
+                            setPageSize={setPageSize}
+                        />
+                    )}
+                </CardContent>
+            </Card>
 
         </Box>
     );
