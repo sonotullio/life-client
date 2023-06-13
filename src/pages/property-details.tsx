@@ -153,7 +153,7 @@ export const PropertyDetails: React.FC = () => {
                 justifyContent: 'space-between',
                 alignItems: 'center',
                 width: '100%',
-                color: 'text.disabled'
+                color: 'text.secondary'
             }}>
                 <Stack direction="row" gap={1}>
                     <Place  />
@@ -194,14 +194,15 @@ export const PropertyDetails: React.FC = () => {
                 width: 90,
                 height: 90,
                 borderRadius: '50%',
-            }} src={propertyDetails.photo} alt="property"/>
-            <Typography>Name</Typography>
-            <Typography variant="caption" color="text.secondary">Role</Typography>
-            <Typography variant="caption" color="text.secondary">Place</Typography>
-            <Typography variant="subtitle2">Props</Typography>
+            }} src={propertyDetails.creator.photo} alt="property"/>
+            <Typography>{propertyDetails.creator.name}</Typography>
+            <Typography variant="caption" color="text.secondary">{propertyDetails.creator.role}</Typography>
+            <Typography variant="caption" color="text.secondary">{propertyDetails.creator.email}</Typography>
+            <Typography variant="subtitle2">{propertyDetails.creator.phone}</Typography>
+            <Typography variant="subtitle2">{propertyDetails.creator.allProperties.length} Props</Typography>
             <Stack direction="row" justifyContent="center" gap={2}>
                 <CustomButton title={'Message'} handleClick={() => {}} icon={<Chat />} />
-                <CustomButton title={'Call'} handleClick={() => {}} icon={<Call />} color="success.main" />
+                <CustomButton title={'Call'} handleClick={() => {}} icon={<Call />} bgColor="success.main" />
             </Stack>
         </Box>
     )
@@ -223,10 +224,10 @@ export const PropertyDetails: React.FC = () => {
                 width: 90,
                 height: 90,
                 borderRadius: '50%',
-            }} src={user.avatar} alt="user avatar"/>
-            <Typography>{user.name}</Typography>
-            <Typography variant="caption" color="text.secondary">Agent</Typography>
-            <Typography variant="caption" color="text.secondary">{user.email}</Typography>
+            }} src={propertyDetails.creator.photo} alt="user avatar"/>
+            <Typography>{propertyDetails.creator.name}</Typography>
+            <Typography variant="caption" color="text.secondary" textTransform="capitalize">{propertyDetails.creator.role}</Typography>
+            <Typography variant="caption" color="text.secondary">{propertyDetails.creator.email}</Typography>
             <Typography variant="subtitle2">
                 {
                     propertyDetails.creator.allProperties?.length > 0 ?
@@ -235,7 +236,7 @@ export const PropertyDetails: React.FC = () => {
             </Typography>
             <Stack direction="row" justifyContent="center" gap={2}>
                 <CustomButton title={'Edit'} handleClick={() => navigate("/properties/edit/" + propertyDetails._id)} icon={<Edit />} />
-                <CustomButton title={'Delete'} handleClick={() => handleDeleteProperty()} icon={<Delete />} color="error.main" />
+                <CustomButton title={'Delete'} handleClick={() => handleDeleteProperty()} icon={<Delete />} bgColor="error.main" />
             </Stack>
         </Box>
     )

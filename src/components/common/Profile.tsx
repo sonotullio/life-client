@@ -13,7 +13,7 @@ import profile from "../../assets/profile_bg.png";
 import {CheckCircle, Instagram, LinkedIn} from "@mui/icons-material";
 import React from "react";
 import {PieChart} from "../charts/PieChart";
-import PropertiesCard from "./Properties";
+import {AllProperties} from "../../pages";
 
 export const Profile = ({id, type, name, avatar, email, properties}: ProfileProps) => {
 
@@ -121,7 +121,7 @@ export const Profile = ({id, type, name, avatar, email, properties}: ProfileProp
     const ProfileCard = () => (
         <Card id="profile_card" sx={{borderRadius: 3}} >
             <CardMedia>
-                <img src={profile} width="100%"/>
+                <img src={profile} alt="profile" width="100%"/>
             </CardMedia>
             <Box sx={{
                 display: 'flex',
@@ -130,7 +130,7 @@ export const Profile = ({id, type, name, avatar, email, properties}: ProfileProp
                 <Box sx={{
                     position: 'relative',
                 }}>
-                    <img src={avatar} style={{
+                    <img src={avatar} alt="avatar" style={{
                         position: 'absolute',
                         top: -50,
                         left: 50,
@@ -222,7 +222,7 @@ export const Profile = ({id, type, name, avatar, email, properties}: ProfileProp
                 <AgentDetails />
             </Box>
             <Box sx={{ gap: 2 }}>
-                <PropertiesCard properties={properties} />
+                <AllProperties hideHeader />
             </Box>
         </Box>
     );

@@ -5,8 +5,9 @@ export interface CustomButtonProps {
     icon?: ReactNode,
     disabled?: boolean,
     handleClick?: () => void,
-
     color?: string,
+    bgColor?: string,
+    size?: "small" | "large" | "medium" | undefined,
 }
 
 export interface ProfileProps {
@@ -38,4 +39,5 @@ export interface FormProps {
     handleImageChange: (file) => void,
     onFinishHandler: (data: FieldValues) => Promise<void> | void,
     propertyImage: { name: string, url: string },
+    avatar?: string,
 }

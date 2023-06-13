@@ -4,6 +4,7 @@ import Container from "@mui/material/Container";
 import Box from "@mui/material/Box";
 
 import { logo } from "../assets";
+import { life } from "../assets";
 
 import { CredentialResponse } from "../interfaces/google";
 
@@ -35,8 +36,8 @@ export const Login: React.FC = () => {
           },
         });
         window.google.accounts.id.renderButton(divRef.current, {
-          theme: "filled_blue",
-          size: "medium",
+          theme: "outline",
+          size: "large",
           type: "standard",
         });
       } catch (error) {
@@ -68,7 +69,7 @@ export const Login: React.FC = () => {
               }}
           >
             <div>
-              <img src={logo} alt="Logo" />
+              <img src={life} alt="Logo" />
             </div>
             <Box mt={4}>
               <GoogleButton />

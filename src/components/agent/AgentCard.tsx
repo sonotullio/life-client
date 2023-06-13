@@ -2,7 +2,7 @@ import {AgentCardProp} from "../../interfaces/agent";
 import {Box, Stack, Typography} from "@mui/material";
 import {Business, Call, Email, MoreHoriz, Place} from "@mui/icons-material";
 import {useGetIdentity} from "@refinedev/core";
-import {Link, useNavigate} from "react-router-dom";
+import {useNavigate} from "react-router-dom";
 
 export const AgentCard = ({id, name, email, avatar, noOfProperties}: AgentCardProp) => {
     const {data: currentUser} = useGetIdentity({
@@ -39,16 +39,21 @@ export const AgentCard = ({id, name, email, avatar, noOfProperties}: AgentCardPr
                 }
             }}
         >
-            <Box sx={{ display: 'flex' }}>
-                <img src={avatar} style={{ height: 150, borderRadius: 6 }} />
+            <Box sx={{ display: 'flex', flexWrap: 'wrap' }} >
+                <Box sx={{
+                    width: '200px', /* Adjust this value based on your desired width */
+                }}>
+                    <img src={avatar} style={{ width: '100%', height: '150px', borderRadius: 6 }} />
+                </Box>
             </Box>
+
             <Box sx={{ display: 'flex', flexDirection: 'column', width: '100%' }} >
                 <Stack display="flex" direction="column" mb={{ xs: 1, sm: 6 }} width="100%">
                     <Stack display="flex" direction="row" justifyContent="space-between" alignItems="center" width="100%">
                         <Typography color="text.primary">{name}</Typography>
                         <MoreHoriz onClick={() => navigate(generateLink())} sx={{ cursor: 'pointer' }} />
                     </Stack>
-                    <Typography variant="subtitle2" color="text.disabled">Real Estate Agent</Typography>
+                    <Typography variant="subtitle2" color="text.secondary">Real Estate Agent</Typography>
                 </Stack>
                 <Stack direction="row" flexWrap="wrap" justifyContent="space-between" alignItems="center" gap={2} color="text.secondary">
                     <InfoBar icon={<Email />} text={email} />

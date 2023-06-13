@@ -13,6 +13,7 @@ export const EditProperty: React.FC = () => {
         refineCore: { onFinish, formLoading },
         register,
         handleSubmit,
+        getValues,
     } = useForm();
 
     const handleImageChange = (file: File) => {
@@ -48,6 +49,7 @@ export const EditProperty: React.FC = () => {
             handleImageChange={handleImageChange}
             onFinishHandler={onFinishHandler}
             propertyImage={propertyImage}
+            avatar={getValues().photo}
         />
     );
 }
