@@ -30,7 +30,9 @@ import {
     Login, Home, AllProperties, PropertyDetails, CreateProperty, EditProperty, Agents, AgentProfile, MyProfile
 } from "pages";
 
-const axiosInstance = axios.create();
+const axiosInstance = axios.create({
+    baseURL: process.env.REACT_APP_API_BASE_URL
+});
 axiosInstance.interceptors.request.use((request: AxiosRequestConfig) => {
     const token = localStorage.getItem("token");
     if (request.headers) {
@@ -50,20 +52,20 @@ function App() {
             const profileObj = credential ? parseJwt(credential) : null;
 
             if (profileObj) {
-                const response = await fetch(
-                    process.env.BASE_URL + "/api/v1/users",
+                const response = await axiosInstance(
+                    `/api/v1/users`,
                     {
                         method: "POST",
                         headers: {"Content-Type": "application/json"},
-                        body: JSON.stringify({
-                            name: profileObj.name,
+                        data: {
                             email: profileObj.email,
+                            name: profileObj.name,
                             avatar: profileObj.picture,
-                        }),
+                        }
                     },
                 );
 
-                const data = await response.json();
+                const {data} = await response;
 
                 if (response.status === 200) {
                     localStorage.setItem(
@@ -115,13 +117,15 @@ function App() {
         },
     };
 
+    console.log('base url: ', process.env.BASE_URL)
+
     return (
         <ColorModeContextProvider>
             <CssBaseline/>
             <GlobalStyles styles={{html: {WebkitFontSmoothing: "auto"}}}/>
             <RefineSnackbarProvider>
                 <Refine
-                    dataProvider={dataProvider(process.env.BASE_URL + "/api/v1")}
+                    dataProvider={dataProvider(`${process.env.REACT_APP_API_BASE_URL}/api/v1`)}
                     notificationProvider={notificationProvider}
                     ReadyPage={ReadyPage}
                     catchAll={<ErrorComponent/>}
