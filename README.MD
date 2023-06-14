@@ -1,4 +1,29 @@
-# client
+# Life | Real Estate
+
+[Click Here](https://life.tullio-forneris.it) and try it!
+
+![Landing](src/assets/landing2.png)
+
+![Landing](src/assets/landing.png)
+
+Life is a real estate application that allows users to search for properties, view property details, and contact the listing agents/owners.
+
+### Technologies
+
+- Node.js, Express.js, MongoDB, and React.js (MERN stack).
+- Material UI: The most popular UI Component Kit nowadays.
+- TypeScript: the code base programming language.
+- Cloudinary: to optimize images and store them on the cloud. 
+- Google Auth: Provide a quick and easy way for your users to log in and register. 
+- Refine: Most importantly, to build React-based CRUD applications quickly.
+- Hostinger and Render: to deploy the application.
+- Git and GitHub: to manage the source code.
+- Intellij Idea: to write the code.
+- Figma: to convert a design in a real App.
+
+### [Keep Updated](https://linkedin.com/in/tullio-forneris) --> Follow me on LinkedIn
+### [Let's collaborate](https://github.com/sonotullio) --> Follow me on GitHub
+### [Other Projects](https://tullio-forneris.it) --> Take a look at my portfolio, you will find all my projects, my ideas, my contacts!
 
 <div align="center" style="margin: 30px;">
     <a href="https://refine.dev">
@@ -45,9 +70,6 @@ To learn more about **refine**, please check out the [Documentation](https://ref
 - **React Router** [Docs](https://refine.dev/docs/core/providers/router-provider/)
 - **Google Auth Provider** [Docs](https://refine.dev/docs/core/providers/auth-provider/)
 - **i18n** [Docs](https://refine.dev/docs/core/providers/i18n-provider/)
-
-## License
-
-MIT
-
-#### A React function component name need to start with a capital letter!
+- **Permissions** [Docs](https://refine.dev/docs/core/plugins/permissions/)
+- **Hooks** [Docs](https://refine.dev/docs/core/hooks/use-params/)
+- **Layouts** [Docs](https://refine.dev/docs/core/plugins/layouts/)
